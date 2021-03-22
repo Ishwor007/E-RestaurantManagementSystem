@@ -11,6 +11,7 @@ public class ProductCategory {
 	 private int pc_id;
 	 private String pc_name;
 	 
+	 
 	public int getPc_id() {
 		return pc_id;
 	}
@@ -22,6 +23,10 @@ public class ProductCategory {
 	}
 	public void setPc_name(String pc_name) {
 		this.pc_name = pc_name;
+	}
+	@Override
+	public String toString() {
+		return "ProductCategory [pc_id=" + pc_id + ", pc_name=" + pc_name + "]";
 	}
 	 
 }

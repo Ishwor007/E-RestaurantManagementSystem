@@ -10,7 +10,7 @@ public class ItemCategory {
     @GeneratedValue
 	 private int pc_id;
 	 private String pc_name;
-	 private String pcimg_location;
+	 
 	 
 	public int getPc_id() {
 		return pc_id;
@@ -25,15 +25,6 @@ public class ItemCategory {
 		this.pc_name = pc_name;
 	}
 	
-	
-	
-	
-	public String getPcimg_location() {
-		return pcimg_location;
-	}
-	public void setPcimg_location(String pcimg_location) {
-		this.pcimg_location = pcimg_location;
-	}
 	@Override
 	public String toString() {
 		return "ProductCategory [pc_id=" + pc_id + ", pc_name=" + pc_name + "]";

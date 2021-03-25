@@ -16,7 +16,7 @@ public class Item {
 	private int item_id;
 	private String item_name;
 	private String item_price;
-	private String img_location;
+	private String img_name;
 	
 	@ManyToOne(cascade = CascadeType.ALL, targetEntity = ItemCategory.class)
 	@JoinColumn(name = "itemcategory_id",referencedColumnName = "pc_id")
@@ -48,11 +48,11 @@ public class Item {
 	public void setItem_price(String item_price) {
 		this.item_price = item_price;
 	}
-	public String getImg_location() {
-		return img_location;
+	public String getImg_name() {
+		return img_name;
 	}
-	public void setImg_location(String img_location) {
-		this.img_location = img_location;
+	public void setImg_name(String img_name) {
+		this.img_name = img_name;
 	}
 
 	

@@ -20,6 +20,7 @@ public class Item {
 	
 	@ManyToOne(cascade = CascadeType.ALL, targetEntity = ItemCategory.class)
 	@JoinColumn(name = "itemcategory_id",referencedColumnName = "pc_id")
+	
 	private ItemCategory item_category;
 	
 	

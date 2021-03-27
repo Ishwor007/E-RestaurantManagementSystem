@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css_File/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style type="text/css">
+        .form-group {
+            width: 35px;
+        }
+
+        form {
+            border: 1px solid black;
+            width: 300px;
+            border: 1px solid black;
+            width: 300px;
+            margin-left: 423px;
+        }
+    </style>
+    <title>E_Restaturant</title>
+</head>
+
+<body>
+    <form method="POST" action="/signup" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="admin_firstname">FirstName</label>
+            <input type="text" name="admin_firstname">
+        </div>
+
+        <div class="form-group">
+            <label for="admin_lastname">LastName</label>
+            <input type="text" name="admin_latname">
+        </div>
+
+        <div class="form-group">
+            <label for="admin_username">UserName</label>
+            <input type="text" name="admin_username">
+        </div>
+
+        <div class="form-group">
+            <label for="admin_Password">Password</label>
+            <input type="password" name="admin_password">
+        </div>
+        <div class="form-group">
+            <label for="admin_Phone">Phone</label>
+            <input type="text" name="admin_phone">
+        </div>
+        <div class="form-group">
+            <label for="admin_email">Email</label>
+            <input type="email" name="admin_email">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="submit">
+        </div>
+    </form>
+</body>
+
+</html>

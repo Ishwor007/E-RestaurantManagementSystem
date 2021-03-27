@@ -7,9 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+import com.project.restaurantManagement.Model.Item;
 import com.project.restaurantManagement.Model.ItemCategory;
 import com.project.restaurantManagement.Repository.ItemCategoryRepo;
+import com.project.restaurantManagement.Repository.ItemRepo;
 
 
 @Component
@@ -17,12 +18,13 @@ public class ItemDaoImpl implements ItemDao {
 
 	@Autowired
 	private ItemCategoryRepo itemcategoryrepo;
-	
+	@Autowired
+	private ItemRepo itemrepo;
 	
 	@Override
-	public void addDataItem() {
+	public void addDataItem(Item item) {
 		
-		
+		itemrepo.save(item);
 	}
 
 	@Override
@@ -39,6 +41,8 @@ public class ItemDaoImpl implements ItemDao {
 		
 		return 0;
 	}
+
+	
   
 	
 	

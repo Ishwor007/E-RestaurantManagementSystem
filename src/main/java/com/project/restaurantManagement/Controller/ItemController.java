@@ -45,8 +45,7 @@ try {
 	 if(categoryid==0) {
 		   System.out.println(item.getItem_price());
 		   item.setItem_category(item_category);
-		   itemrepo.save(item);
-		   //itemcategoryrepo.save(item_category);
+		  itemdao.addDataItem(item);
 		   System.out.println("Control flow in if condition");
 		   return new ResponseEntity<>("success with new Category",HttpStatus.OK);
 	 }

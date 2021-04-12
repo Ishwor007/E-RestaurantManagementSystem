@@ -1,6 +1,6 @@
 package com.project.restaurantManagement.Model;
 
-import javax.persistence.Entity;
+
 
 
 public class OrderDetails {

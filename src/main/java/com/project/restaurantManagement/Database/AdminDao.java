@@ -1,7 +1,6 @@
 package com.project.restaurantManagement.Database;
 
 import com.project.restaurantManagement.Model.Admin;
-import com.project.restaurantManagement.Model.Item;
 
 public interface AdminDao {
 

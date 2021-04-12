@@ -5,14 +5,11 @@ package com.project.restaurantManagement.Database;
 
 
 import java.util.List;
-
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.restaurantManagement.Model.Admin;
-import com.project.restaurantManagement.Model.Item;
 import com.project.restaurantManagement.Repository.AdminRepo;
 
 @Component

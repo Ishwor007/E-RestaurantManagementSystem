@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.restaurantManagement.Model.Admin;
+import com.project.restaurantManagement.Model.Item;
 import com.project.restaurantManagement.Repository.AdminRepo;
 
 @Component

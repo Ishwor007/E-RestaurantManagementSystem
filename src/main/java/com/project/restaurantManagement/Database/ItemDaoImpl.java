@@ -42,6 +42,17 @@ public class ItemDaoImpl implements ItemDao {
 		return 0;
 	}
 
+	@Override
+	public void saveItem(Item item) {
+	itemrepo.save(item);
+		
+	}
+
+	@Override
+	public ItemCategory getItemCategory(int category_id) {
+		return itemcategoryrepo.getOne(category_id);
+	}
+
 	
   
 	

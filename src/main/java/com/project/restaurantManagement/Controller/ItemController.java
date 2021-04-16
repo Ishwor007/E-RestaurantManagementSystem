@@ -5,33 +5,33 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.restaurantManagement.Database.ItemDao;
 import com.project.restaurantManagement.Model.Item;
 import com.project.restaurantManagement.Model.ItemCategory;
 import com.project.restaurantManagement.Repository.ItemCategoryRepo;
-import com.project.restaurantManagement.Repository.ItemRepo;
 
 
-@RestController
+
+@Controller
 public class ItemController {
 
 	
 	@Autowired
 	private ItemDao itemdao;
 	@Autowired
-	private ItemRepo itemrepo;
-	@Autowired
 	private ItemCategoryRepo itemcategoryrepo;
 	
+	//placing a data by the admin in the database
+	
 	@PostMapping("/file")
-	public ResponseEntity<String> saveDataItem(@RequestParam("file") MultipartFile file,Item item,ItemCategory item_category){
+	public String saveDataItem(@RequestParam("file") MultipartFile file,Item item,ItemCategory item_category){
     String img_name = file.getOriginalFilename();
 try {
 	byte[] b = file.getBytes();
@@ -46,17 +46,34 @@ try {
 		   System.out.println(item.getItem_price());
 		   item.setItem_category(item_category);
 		  itemdao.addDataItem(item);
-		   System.out.println("Control flow in if condition");
-		   return new ResponseEntity<>("success with new Category",HttpStatus.OK);
+		   return "dataentry";
 	 }
 	 else {
-		   System.out.println("Control flow in else condition");
-		  ItemCategory icategory = itemcategoryrepo.getOne(categoryid);
+		   
+		  ItemCategory icategory = itemdao.getItemCategory(categoryid);
 		  item.setItem_category(icategory);
-		   itemrepo.save(item);
-		   return new ResponseEntity<>("success with old Category",HttpStatus.OK);
+		  
+		  itemdao.saveItem(item);
+		  
+		  // itemrepo.save(item);
+		   return "dataentry";
 	 }
 	  
 	
 	}	
+	
+	
+	//Fetching the item from the database
+	
+//	public Page<Item> getPage() {
+//		
+//		
+//		
+//		
+//		return  ;
+//	}
+	
+	
+	
+	
 }

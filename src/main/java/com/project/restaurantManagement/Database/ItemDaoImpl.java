@@ -1,12 +1,12 @@
 package com.project.restaurantManagement.Database;
 
-import java.util.Collections;
+
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
 import com.project.restaurantManagement.Model.Item;
 import com.project.restaurantManagement.Model.ItemCategory;
 import com.project.restaurantManagement.Repository.ItemCategoryRepo;
@@ -44,8 +44,7 @@ public class ItemDaoImpl implements ItemDao {
 
 	@Override
 	public void saveItem(Item item) {
-	itemrepo.save(item);
-		
+	itemrepo.save(item);	
 	}
 
 	@Override
@@ -53,6 +52,14 @@ public class ItemDaoImpl implements ItemDao {
 		return itemcategoryrepo.getOne(category_id);
 	}
 
+	@Override
+	public Page<Item> findPage(int page, int page_size) {
+		Pageable pageable = PageRequest.of(page-1, page_size);
+		System.out.println(pageable);
+		return itemrepo.findAll(pageable);
+	}
+
+	
 	
   
 	

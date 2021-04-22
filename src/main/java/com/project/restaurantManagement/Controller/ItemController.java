@@ -3,11 +3,17 @@ package com.project.restaurantManagement.Controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,8 +31,13 @@ public class ItemController {
 	
 	@Autowired
 	private ItemDao itemdao;
-	@Autowired
-	private ItemCategoryRepo itemcategoryrepo;
+	
+	
+	@GetMapping("/")
+	 public String getHomePages(Model model) {
+		 return getPage(1, model);
+	 }
+	
 	
 	//placing a data by the admin in the database
 	
@@ -52,26 +63,29 @@ try {
 		   
 		  ItemCategory icategory = itemdao.getItemCategory(categoryid);
 		  item.setItem_category(icategory);
-		  
 		  itemdao.saveItem(item);
-		  
-		  // itemrepo.save(item);
-		   return "dataentry";
+		  return "dataentry";
 	 }
 	  
-	
 	}	
 	
 	
 	//Fetching the item from the database
 	
-//	public Page<Item> getPage() {
-//		
-//		
-//		
-//		
-//		return  ;
-//	}
+	@GetMapping("/home/{page}")
+	public String getPage(@PathVariable("page") int page,Model model) {
+		int page_size=6;
+		Page<Item> pages = itemdao.findPage(page,page_size);
+		List<Item> item_list = pages.getContent();
+		model.addAttribute("currentpage",page);
+		model.addAttribute("totalpage",pages.getTotalPages());
+		model.addAttribute("totalelement",pages.getTotalElements());
+		model.addAttribute("item_list",item_list);
+		System.out.println(page);
+		System.out.println(pages.getTotalPages());
+	    return "home";
+		
+	}
 	
 	
 	

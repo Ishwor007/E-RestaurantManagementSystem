@@ -46,13 +46,13 @@
             <div class="Menu-bar" >
                 <div class="menu-item " >
                     <div class="item " th:each="item : ${item_list}" >
-                        <div class="image-section"><img></div>
+                        <div class="image-section" ><img th:src="@{'/photos/'+ ${item.getImg_name()}}"></img></div>
                         <div class="food-desc">
-                            <h4>[[${item.getItem_name()}]]"</h4>
+                            <h4>[[${item.getItem_name()}]]</h4>
                             <small>[[${item.getItem_price()}]]</small>
                             <div>
                                 <h5>Quantity</h5>
-                                <input type="text" name="prd-quantity" class="prd-quantity">
+                                <input type="number" name="prd-quantity" class="prd-quantity">
                                 <button class="order-btn">Order</button>
                             </div>
                         </div>

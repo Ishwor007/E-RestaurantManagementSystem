@@ -46,7 +46,8 @@ public class ItemController {
     String img_name = file.getOriginalFilename();
 try {
 	byte[] b = file.getBytes();
-   Path path = Paths.get("/home/seetal/Documents/workspace-spring-tool-suite-4-4.6.0.RELEASE/RestaurantManagement/src/main/webapp/photos/"+img_name);
+   Path path = Paths.get("/home/seetal/Desktop/RestaurantManagement/src/main/webapp/photos/"+img_name);
+   System.out.println(img_name);
    Files.write(path, b);
 
 }catch(Exception e) {}

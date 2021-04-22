@@ -1,0 +1,124 @@
+@charset "UTF-8";
+body
+{
+   
+    height: 698px;
+    width: auto;
+}
+.main-container
+{
+    /* background-color: lawngreen; */
+    background-image:url(http://localhost/photos/bgImage.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:auto;
+    height:auto;
+    display:flex;
+    justify-content:initial;
+    padding-left:10%;
+    overflow:auto;
+    height: 698px;
+}
+
+.main-container-item
+{
+    /* background-color: yellow;  */
+    height:310px;
+    margin: 155px 56px 0px 0px;
+    position: absolute;
+    /* height: 513px; */
+}
+
+form{
+margin-right: 26px; 
+display:grid;
+grid-template-columns: auto auto;
+grid-column-gap:8px;
+align-items: center;
+}
+input::placeholder {
+    font-size: 21px;
+}
+input
+  {    
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    background-color:initial;
+    width: auto;
+    height: 40px;
+    font-family: 'Lato', sans-serif;
+    
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus
+{
+color: white;
+}
+button.btn-field.btn.btn-primary 
+
+{
+    font-size: 20px;
+    padding: 2px;
+    border-radius:5px;
+    font-family: 'Lato', sans-serif;
+}
+.submit-btn {
+    margin-top: 33px;
+}
+.new-account-option {
+    margin-top: 32px;
+    color: #007bff;
+	text-decoration: none;
+	background-color: transparent;
+	font-size: 6vh;
+	text-transform: capitalize;
+}
+.frm-control{
+	color: white;
+}
+.glow{
+    font-size: 70px;
+    color: #fff;
+    text-align: center;
+    animation: glow 1ms ease-in-out infinite alternate;
+  }
+  @keyframes glow{
+    from {
+      text-shadow: 0 0 10px #fff ;
+    }
+    
+    to {
+      text-shadow: 0 0 10px #fff;}
+  }
+
+@media only screen and (max-width:768px)
+  {
+   
+     .main-container
+        {
+            width:auto;
+            overflow:auto; 
+            display: flex;
+            justify-content: center;
+        }
+        .glow 
+        {
+          font-size: 45px;
+          color: firebrick;
+        }
+        input.frm-ctrl::placeholder{
+            color:firebrick;
+        }
+        form
+        {
+          display: grid; 
+          grid-template-columns: auto;
+          width: auto;
+          /* height: auto; */
+          overflow: auto; 
+         justify-content: center;
+        } 
+  }

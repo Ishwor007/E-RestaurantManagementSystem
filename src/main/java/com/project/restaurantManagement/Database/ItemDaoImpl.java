@@ -1,11 +1,15 @@
 package com.project.restaurantManagement.Database;
 
 
+
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import com.project.restaurantManagement.Model.Item;
 import com.project.restaurantManagement.Model.ItemCategory;
@@ -55,13 +59,32 @@ public class ItemDaoImpl implements ItemDao {
 	@Override
 	public Page<Item> findPage(int page, int page_size) {
 		Pageable pageable = PageRequest.of(page-1, page_size);
-		System.out.println(pageable);
 		return itemrepo.findAll(pageable);
 	}
 
+	@Override
+	public List<ItemCategory> getItemCategory() {
+		
+		List<ItemCategory> item_c = itemcategoryrepo.findAll();
+		return item_c;
+	}
+
+	@Override
+	public Page<Item> FindPageByName(String cname,int page, int page_size) {
+	  int pc_id=0;
+		Pageable pageable = PageRequest.of(page-1, page_size);
+		List<Item> items = itemrepo.findAll();
+		for(Item item:items) {
+			if(item.getItem_category().getPc_name().equals(cname)) {
+				pc_id=item.getItem_category().getPc_id();
+			}
+		}
+		System.out.println("++++++++++++++++++ "+pageable.getPageNumber());
+		return itemrepo.findAllById(pageable,pc_id);
+		
+	}
+
 	
-	
-  
-	
+
 	
 }

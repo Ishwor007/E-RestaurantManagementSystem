@@ -1,5 +1,7 @@
 package com.project.restaurantManagement.Database;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,5 +15,7 @@ public interface ItemDao {
   public void saveItem(Item item);
   public ItemCategory getItemCategory(int category_id);
   public Page<Item> findPage(int page, int page_size);
-
+  public List<ItemCategory> getItemCategory();
+  public Page<Item> FindPageByName(String cname,int page, int page_size);
+  
 }

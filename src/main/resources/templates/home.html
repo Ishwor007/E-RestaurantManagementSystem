@@ -20,9 +20,10 @@
                     <p>E-Restaurant</p>
                 </div>
             </div>
+            
             <div class="right_side_nav col-md-6">
-                <input class="form-control mr-2 " type="search" placeholder="Search" aria-label="Search">
-                <button class="search-btn btn-primary" type="submit">Search</button>
+                <input class="form-control mr-2 " type="search" placeholder="Search" aria-label="Search" th:value="${keyword}">
+               <button class="search-btn btn-primary" type="submit" >Search</button>
             </div>
         </nav>
         <main class="main_Content">
@@ -33,10 +34,7 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">All</a>
-                            <a class="dropdown-item" href="#">soups</a>
-                            <a class="dropdown-item" href="#">Momo</a>
-                            <a class="dropdown-item" href="#">Breakfast</a>
+                            <a class="dropdown-item" th:each="item_c : ${itemcategory_list}" th:href="@{'/home/'+ 'item' +'/'+${item_c.getPc_name()}}">[[${item_c.getPc_name()}]]</a>
                         </div>
                     </div>
                 </div>
@@ -51,9 +49,10 @@
                             <h4>[[${item.getItem_name()}]]</h4>
                             <small>[[${item.getItem_price()}]]</small>
                             <div>
-                                <h5>Quantity</h5>
+                               <h5>Quantity</h5>
                                 <input type="number" name="prd-quantity" class="prd-quantity">
-                                <button class="order-btn">Order</button>
+                                
+                               <a href=""><button class="order-btn">Order</button></a>
                             </div>
                         </div>
                     </div>       
@@ -61,9 +60,16 @@
           <div>
               <a href="#">&laquo;</a>
               <span th:each = "i: ${#numbers.sequence(1,totalpage)}">
+              <span th:if="${condition.equals('yes')}">
                   <a th:if = "${currentpage != i}" th:href="@{'/home/'+ ${i}}">[[${i}]]</a>
-                  <span th:unless="${currentpage != i}">[[${i}]]</span>
+                       <span th:unless="${currentpage != i}">[[${i}]]</span>
+                  </span>
+                 <span th:unless="${condition}" >
+                 <a th:if = "${currentpage != i}"  th:href="@{'/home/'+ 'items/'+ ${i}}">[[${i}]]</a>
+               <span th:unless="${currentpage != i}">[[${i}]]</span>
               </span> 
+                 </span>
+                  
               <a href="#">&raquo;</a>
         </div>
   </div>

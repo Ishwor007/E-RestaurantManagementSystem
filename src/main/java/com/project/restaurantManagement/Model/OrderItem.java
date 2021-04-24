@@ -14,6 +14,7 @@ public class OrderItem {
 	@GeneratedValue
 	private int order_id;
 	private Time order_time;
+	private int tablenumber;
 	
 	public int getOrder_id() {
 		return order_id;

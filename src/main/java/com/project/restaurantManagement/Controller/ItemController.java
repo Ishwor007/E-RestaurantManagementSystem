@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ import com.project.restaurantManagement.Repository.ItemCategoryRepo;
 
 @Controller
 public class ItemController {
-
+ private String cname;
 	
 	@Autowired
 	private ItemDao itemdao;
@@ -76,19 +77,56 @@ try {
 	@GetMapping("/home/{page}")
 	public String getPage(@PathVariable("page") int page,Model model) {
 		int page_size=6;
+		String condition="yes";
+		List<ItemCategory> item_c=itemdao.getItemCategory();
 		Page<Item> pages = itemdao.findPage(page,page_size);
 		List<Item> item_list = pages.getContent();
 		model.addAttribute("currentpage",page);
 		model.addAttribute("totalpage",pages.getTotalPages());
 		model.addAttribute("totalelement",pages.getTotalElements());
 		model.addAttribute("item_list",item_list);
+		model.addAttribute("itemcategory_list",item_c);
+		model.addAttribute("condition", condition);
 		System.out.println(page);
 		System.out.println(pages.getTotalPages());
+		
+		//System.out.println("-----------------------------------"+page);
+		
+		System.out.println("-----------------------------------"+page);
+		System.out.println("-----------------------------------"+pages.getTotalElements());
+		System.out.println("-----------------------------------"+pages.getTotalPages());
+		
+		
 	    return "home";
 		
 	}
-	
-	
-	
+	@GetMapping("home/items/{page}")
+	public String getItemByCategory(@PathVariable("page") int page,Model model) {
+	  int page_size=6;
+	  String condition="no";
+	  
+	  List<ItemCategory> item_c=itemdao.getItemCategory();
+		Page<Item> pages = itemdao.FindPageByName(cname, page, page_size);
+		
+		List<Item> item_list = pages.getContent();
+		
+		model.addAttribute("currentpage",page);
+		model.addAttribute("totalpage",pages.getTotalPages());
+		model.addAttribute("totalelement",pages.getTotalElements());
+		model.addAttribute("item_list",item_list);
+		model.addAttribute("itemcategory_list",item_c);
+		model.addAttribute("condition",condition);
+		
+		System.out.println("-----------------------------------"+page);
+		System.out.println("-----------------------------------"+pages.getTotalElements());
+		System.out.println("-----------------------------------"+pages.getTotalPages());
+		
+		return "home";
+	}
+	@GetMapping("home/item/{cname}")
+	public String getItemByPage(@PathVariable("cname") String cname,Model model) {
+		this.cname=cname;
+		return getItemByCategory( 1, model);
+	}
 	
 }

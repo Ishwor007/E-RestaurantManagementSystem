@@ -17,7 +17,13 @@ body
   display: inline-block;
  
 }
-
+.order{
+display: flex;
+flex-direction: row-reverse;
+justify-content: flex-start;
+padding-right: 13%;
+}
+ 
 
 .leftside-nav{
 display:flex;

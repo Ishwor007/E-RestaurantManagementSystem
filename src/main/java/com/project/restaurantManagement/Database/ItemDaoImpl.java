@@ -13,8 +13,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import com.project.restaurantManagement.Model.Item;
 import com.project.restaurantManagement.Model.ItemCategory;
+import com.project.restaurantManagement.Model.OrderItem;
 import com.project.restaurantManagement.Repository.ItemCategoryRepo;
 import com.project.restaurantManagement.Repository.ItemRepo;
+import com.project.restaurantManagement.Repository.OrderRepo;
 
 
 @Component
@@ -24,6 +26,9 @@ public class ItemDaoImpl implements ItemDao {
 	private ItemCategoryRepo itemcategoryrepo;
 	@Autowired
 	private ItemRepo itemrepo;
+	
+	@Autowired
+	private OrderRepo orderrepo;
 	
 	@Override
 	public void addDataItem(Item item) {
@@ -79,12 +84,33 @@ public class ItemDaoImpl implements ItemDao {
 				pc_id=item.getItem_category().getPc_id();
 			}
 		}
-		System.out.println("++++++++++++++++++ "+pageable.getPageNumber());
+		
 		return itemrepo.findAllById(pageable,pc_id);
 		
 	}
 
-	
+	@Override
+	public Item getItem(int id) {
+		return itemrepo.getOne(id);
+	}
 
+	@Override
+	public void saveOrderDetails(OrderItem orderitem) {
+		
+		orderrepo.save(orderitem);
+		
+	}
+
+	@Override
+	public List<OrderItem> getAllOrderItem() {
+		return orderrepo.findAll();
+	}
+
+	@Override
+	public void serverdItem(int order_id) {
+		orderrepo.deleteById(order_id);
+	}
+
+	
 	
 }

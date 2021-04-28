@@ -14,13 +14,13 @@
         <nav class="nav_bar">
             <div class="leftside-nav col-md-6">
                 <div class="left-nav-item">
-                    <img class="left-nav-image"></img>
+                   <a href="/"><img class="left-nav-image"></img></a> 
                 </div>
                 <div class="logo_text">
                     <p>E-Restaurant</p>
                 </div>
             </div>
-            
+           
             <div class="right_side_nav col-md-6">
                 <input class="form-control mr-2 " type="search" placeholder="Search" aria-label="Search" th:value="${keyword}">
                <button class="search-btn btn-primary" type="submit" >Search</button>
@@ -38,24 +38,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="menupart">Menu</div>
             </div>
-            <div class="item-category">soup</div>
+            
+             <div class="order"><a href="/home/order"><button type="button" class="order-button">Order</button></a></div>
+            
+            <div class="item-category">All</div> 
             <div class="Menu-bar" >
                 <div class="menu-item " >
                     <div class="item " th:each="item : ${item_list}" >
+                    <form th:action="@{'/home/order/'+ ${item.getItem_id()}}" th:object="${OrderItem}", method="post" >
                         <div class="image-section" ><img th:src="@{'/photos/'+ ${item.getImg_name()}}"></img></div>
                         <div class="food-desc">
                             <h4>[[${item.getItem_name()}]]</h4>
-                            <small>[[${item.getItem_price()}]]</small>
+                            Price:<large>[[${item.getItem_price()}]]</large>
                             <div>
                                <h5>Quantity</h5>
-                                <input type="number" name="prd-quantity" class="prd-quantity">
-                                
-                               <a href=""><button class="order-btn">Order</button></a>
+                                <input type="number" name="item_quantity" class="prd-quantity">
+                                <h5>Tableno</h5>
+                                <input type="number" name="tablenumber">
+                               <input type="submit" class="order-btn" value="order">
                             </div>
                         </div>
-                    </div>       
+                        </form>
+                    </div>          
           </div>
           <div>
               <a href="#">&laquo;</a>

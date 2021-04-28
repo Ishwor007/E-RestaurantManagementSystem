@@ -90,13 +90,6 @@ try {
 		System.out.println(page);
 		System.out.println(pages.getTotalPages());
 		
-		//System.out.println("-----------------------------------"+page);
-		
-		System.out.println("-----------------------------------"+page);
-		System.out.println("-----------------------------------"+pages.getTotalElements());
-		System.out.println("-----------------------------------"+pages.getTotalPages());
-		
-		
 	    return "home";
 		
 	}
@@ -116,11 +109,6 @@ try {
 		model.addAttribute("item_list",item_list);
 		model.addAttribute("itemcategory_list",item_c);
 		model.addAttribute("condition",condition);
-		
-		System.out.println("-----------------------------------"+page);
-		System.out.println("-----------------------------------"+pages.getTotalElements());
-		System.out.println("-----------------------------------"+pages.getTotalPages());
-		
 		return "home";
 	}
 	@GetMapping("home/item/{cname}")

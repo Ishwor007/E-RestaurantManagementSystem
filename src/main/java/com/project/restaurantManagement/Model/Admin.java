@@ -1,6 +1,6 @@
 package com.project.restaurantManagement.Model;
 
-import java.sql.Date;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ public class Admin {
 	 private String admin_username;
 	 private String admin_password;
 	 private String admin_phone;
-	 private Date creation_date;
+	 private String creation_date;
 	 private String admin_email;
 	public int getAdmin_id() {
 		return admin_id;
@@ -54,10 +54,10 @@ public class Admin {
 	public void setAdmin_phone(String admin_phone) {
 		this.admin_phone = admin_phone;
 	}
-	public Date getCreation_date() {
+	public String getCreation_date() {
 		return creation_date;
 	}
-	public void setCreation_date(Date creation_date) {
+	public void setCreation_date(String creation_date) {
 		this.creation_date = creation_date;
 	}
 	public String getAdmin_email() {

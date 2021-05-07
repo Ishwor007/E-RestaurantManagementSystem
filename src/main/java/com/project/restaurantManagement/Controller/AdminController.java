@@ -1,5 +1,8 @@
 package com.project.restaurantManagement.Controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,13 +42,16 @@ public class AdminController {
 	@GetMapping("/dataentry")
 	 public String getdataEntryPage() {
 		
-		 return "dataentry";
+		 return "adminlogin";
 	 }
 	
 	@PostMapping("/signup")
 	public String fillSignup(@ModelAttribute Admin admin) {
 		
 		admin.setAdmin_password(DigestUtils.md5DigestAsHex(admin.getAdmin_password().getBytes()));
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		   LocalDateTime now = LocalDateTime.now(); 
+		admin.setCreation_date(dtf.format(now));
 		admindao.addAdmin(admin);
 		
 		

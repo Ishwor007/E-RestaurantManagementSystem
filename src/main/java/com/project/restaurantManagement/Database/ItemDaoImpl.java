@@ -14,9 +14,11 @@ import org.springframework.stereotype.Component;
 import com.project.restaurantManagement.Model.Item;
 import com.project.restaurantManagement.Model.ItemCategory;
 import com.project.restaurantManagement.Model.OrderItem;
+import com.project.restaurantManagement.Model.ServedTables;
 import com.project.restaurantManagement.Repository.ItemCategoryRepo;
 import com.project.restaurantManagement.Repository.ItemRepo;
 import com.project.restaurantManagement.Repository.OrderRepo;
+import com.project.restaurantManagement.Repository.ServedRepo;
 
 
 @Component
@@ -29,6 +31,9 @@ public class ItemDaoImpl implements ItemDao {
 	
 	@Autowired
 	private OrderRepo orderrepo;
+	
+	@Autowired
+	private ServedRepo servedrepo;
 	
 	@Override
 	public void addDataItem(Item item) {
@@ -108,6 +113,16 @@ public class ItemDaoImpl implements ItemDao {
 
 	@Override
 	public void serverdItem(int order_id) {
+		
+		OrderItem order = orderrepo.getOne(order_id);
+		ServedTables stables = new ServedTables();
+		stables.setOrder_id(order_id);
+		stables.setItem(order.getItem());
+		stables.setItem_quantity(order.getItem_quantity());
+		stables.setOrder_time(order.getOrder_time());
+		stables.setTablenumber(order.getTablenumber());
+		stables.setTotal_price(order.getTotal_price());
+		servedrepo.save(stables);
 		orderrepo.deleteById(order_id);
 	}
 

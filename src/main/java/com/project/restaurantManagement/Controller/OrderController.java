@@ -48,6 +48,7 @@ public class OrderController {
 	 
 	 @GetMapping("/home/order/served/{order_id}")
 	 public String servedItem(@PathVariable("order_id") int order_id,Model model) {
+		 
 		 itemdao.serverdItem(order_id);
 			List<OrderItem> orderitemlist= itemdao.getAllOrderItem();
 			model.addAttribute("orderitemlist",orderitemlist);

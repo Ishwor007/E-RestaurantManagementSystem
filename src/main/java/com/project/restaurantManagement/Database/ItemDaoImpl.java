@@ -122,6 +122,7 @@ public class ItemDaoImpl implements ItemDao {
 		stables.setOrder_time(order.getOrder_time());
 		stables.setTablenumber(order.getTablenumber());
 		stables.setTotal_price(order.getTotal_price());
+		
 		servedrepo.save(stables);
 		orderrepo.deleteById(order_id);
 	}
